@@ -31,7 +31,20 @@ router.get('/add/:id',(req,res,next)=>{
   res.write("This is the next('route')")
   res.end()
 })
+// http://localhost:3000/products/MACBOOKPRO/20
 
 
+router.get('/instock/:qt',(req,res,next)=>{
+  qt=req.params.qt
+  var filtered_products=[];
+  for(id in products){
+    console.log(id);
+    if(products[id].stock >= qt){ 
+      console.log(products[id]);
+      filtered_products.push(products[id])
+    }
+  }
+  res.json(filtered_products)    
+})
 
 module.exports = router;
